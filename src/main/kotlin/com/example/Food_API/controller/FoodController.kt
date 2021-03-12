@@ -21,4 +21,18 @@ class FoodController() {
         val response = client.newCall(request).execute()
     return response.body()?.string()
     }
+    @GetMapping("/{foodId}")
+    fun getAllRecipes(@PathVariable foodId: Long): String? {
+        val client = OkHttpClient()
+
+        val request = Request.Builder()
+            .url("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=burger&diet=vegetarian&excludeIngredients=coconut&intolerances=egg%2C%20gluten&number=10&offset=0&type=main%20course")
+            .get()
+            .addHeader("x-rapidapi-key", "a39f11b907mshceff79aff7b84ebp1c6c4cjsn52c1abade2c3")
+            .addHeader("x-rapidapi-host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
+            .build()
+
+        val response = client.newCall(request).execute()
+        return response.body()?.string()
+    }
 }
