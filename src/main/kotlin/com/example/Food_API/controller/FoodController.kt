@@ -22,7 +22,7 @@ class FoodController() {
     return response.body()?.string()
     }
     @GetMapping("/{foodId}")
-    fun getAllRecipes(@PathVariable foodId: Long): String? {
+    fun findFoodById(@PathVariable foodId: Long): String? {
         val client = OkHttpClient()
 
         val request = Request.Builder()
