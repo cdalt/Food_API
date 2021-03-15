@@ -13,7 +13,7 @@ const val RAPID_API_URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapida
 class FoodController() {
 
 
-    @GetMapping("/{foodId}")
+    @GetMapping("/{foodId}", produces = ["application/json"])
     fun findFoodById(@PathVariable foodId: Int): String? {
         val client = OkHttpClient()
 
