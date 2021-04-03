@@ -14,7 +14,7 @@ const val RAPID_API_URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapida
 
 @Service
 
-class DefaultFoodService: FoodService {
+abstract class DefaultFoodService: FoodService {
 override fun getIngredientsByRecipeId (foodId: Int): String? {
     val client = OkHttpClient()
 
@@ -28,17 +28,4 @@ override fun getIngredientsByRecipeId (foodId: Int): String? {
     val response = client.newCall(request).execute()
     return response.body()?.string()
 }
-    override fun getRecipes (foodQuery: String): String? {
-        val client = OkHttpClient()
-
-        val request = Request.Builder()
-            .url("${RAPID_API_URL}search?query=${foodQuery}")
-            .get()
-            .addHeader("x-rapidapi-key", RAPID_API_KEY)
-            .addHeader("x-rapidapi-host", RAPID_API_HOST)
-            .build()
-
-        val response = client.newCall(request).execute()
-        return response.body()?.string()
-    }
 }
